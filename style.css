@@ -1,0 +1,118 @@
+:root {
+  color-scheme: light dark;
+  --bg: #f7f7f7;
+  --fg: #535353;
+  --ground: #888;
+  --overlay: rgba(247, 247, 247, 0.94);
+  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #fafafa 0, #f0f0f0 60%, #ebebeb 100%);
+  color: var(--fg);
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.layout {
+  width: min(960px, 95vw);
+  display: grid;
+  gap: 1.5rem;
+}
+
+.hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1rem;
+}
+
+.title {
+  font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+  margin: 0;
+  letter-spacing: 0.08em;
+}
+
+.scoreboard {
+  display: flex;
+  gap: 1.5rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: clamp(1rem, 1.6vw, 1.3rem);
+}
+
+.game-wrapper {
+  position: relative;
+  border-radius: 16px;
+  padding: 12px;
+  background: #fff;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+}
+
+#game-canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  background: linear-gradient(#ffffff, #fdfdfd 65%, #e9e9e9 65%, #e9e9e9 100%);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  background: var(--overlay);
+  border-radius: 12px;
+  color: #444;
+  transition: opacity 0.3s ease;
+}
+
+.overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#restart {
+  border: none;
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  border-radius: 999px;
+  background: #4caf50;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(76, 175, 80, 0.3);
+}
+
+#restart:active {
+  transform: scale(0.98);
+}
+
+.instructions {
+  margin-block: 0 1.5rem;
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+  .hud {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .scoreboard {
+    gap: 0.75rem;
+  }
+}
