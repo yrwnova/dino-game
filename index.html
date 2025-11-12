@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dino Run</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <header class="hud">
+        <h1 class="title">Offline Dino</h1>
+        <div class="scoreboard">
+          <div class="score">Score: <span id="score">00000</span></div>
+          <div class="highscore">HI: <span id="high-score">00000</span></div>
+        </div>
+      </header>
+
+      <section class="game-wrapper">
+        <canvas id="game-canvas" width="900" height="260" aria-label="Chrome offline dinosaur game"></canvas>
+        <div class="overlay" id="overlay">
+          <p id="message">Press Space to start</p>
+          <button id="restart" type="button">Restart</button>
+        </div>
+      </section>
+
+      <footer class="instructions">
+        <p>
+          Press <strong>Space</strong> or <strong>Arrow Up</strong> to jump. Avoid the cacti to
+          keep running! The game speeds up every 100 points just like the original.
+        </p>
+      </footer>
+    </main>
+    <script src="script.js" defer></script>
+  </body>
+</html>
