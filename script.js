@@ -16,11 +16,8 @@ const JUMP_VELOCITY = -14.5;
 let lastTime = 0;
 let isRunning = false;
 let gameOver = false;
-const INITIAL_BASE_SPEED = 8;
-const SPEED_REDUCTION_FACTOR = 0.3; // 70% slower than original pace
-const SCORE_PER_SECOND = 10;
-let baseSpeed = INITIAL_BASE_SPEED * SPEED_REDUCTION_FACTOR;
-let score = 0;
+let baseSpeed = 8;
+let distanceRan = 0;
 let frameTimer = 0;
 let legFrame = 0;
 let obstacleTimer = 0;
@@ -130,8 +127,8 @@ function spawnCloud() {
 function resetGame() {
   obstacles.length = 0;
   clouds.length = 0;
-  score = 0;
-  baseSpeed = INITIAL_BASE_SPEED * SPEED_REDUCTION_FACTOR;
+  distanceRan = 0;
+  baseSpeed = 8;
   frameTimer = 0;
   legFrame = 0;
   obstacleTimer = 0;
@@ -173,10 +170,10 @@ function update(delta) {
 
   dino.update();
 
-  score += (delta / 1000) * SCORE_PER_SECOND;
-  const scoreValue = Math.floor(score);
-  const speedMultiplier = 1 + Math.floor(scoreValue / 1000) * 0.1;
+  const speedMultiplier = 1 + Math.floor(distanceRan / 1000) * 0.1;
   const currentSpeed = baseSpeed * speedMultiplier;
+  distanceRan += currentSpeed * (delta / 16.67);
+  const scoreValue = Math.floor(distanceRan);
   updateScore(scoreValue);
 
   const best = getHighScore();
@@ -194,7 +191,7 @@ function update(delta) {
   obstacleTimer -= delta;
   if (obstacleTimer <= 0) {
     spawnObstacle();
-    const interval = Math.max(600 - Math.min(scoreValue, 500), 250);
+    const interval = Math.max(600 - Math.min(distanceRan, 500), 250);
     obstacleTimer = interval + Math.random() * 200;
   }
 
